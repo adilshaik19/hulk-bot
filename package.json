@@ -1,0 +1,23 @@
+{
+  "name": "hulk-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adilshaik19/hulk-bot.git"
+  },
+  "author": "Adil Shaik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adilshaik19/hulk-bot/issues"
+  },
+  "homepage": "https://github.com/adilshaik19/hulk-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
