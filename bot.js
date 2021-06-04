@@ -12,7 +12,7 @@ client.on("message", async (message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
     if (cmd === "cal") {
-      let ans = null;
+      let ans;
       if (
         args.includes("+") ||
         args.includes("-") ||
@@ -21,23 +21,9 @@ client.on("message", async (message) => {
       ) {
         for (let i = 0; i < args.length; ) {
           //DMAS
-          let signum = null;
-          signum = args.findIndex("*") || args.findIndex("x");
-          if (!signum || signum == null) {
-            signum = args.findIndex("+");
-          }
-          if (!signum || signum == null) {
-            signum = args.findIndex("-");
-          }
-
-          sign = args[signum];
-
-          //!!cal 14 + 10 + 3.9 x 1.7
-
-          const arg = args[signum - i];
-
-          var secondnum = args[signum + 1];
-          console.log(signum, arg);
+          const arg = args[i];
+          const sign = args[i + 1];
+          var secondnum = args[i + 2];
           if (arg && sign && secondnum) {
             if (
               !arg.includes("+") &&
@@ -47,10 +33,12 @@ client.on("message", async (message) => {
             ) {
               let arr = [arg, secondnum];
               try {
-                if (ans.toString().split("").includes(".")) {
-                  ans = parseFloat(ans);
-                } else {
-                  ans = parseInt(ans);
+                if (ans) {
+                  if (ans.toString().split("").includes(".")) {
+                    ans = parseFloat(ans);
+                  } else {
+                    ans = parseInt(ans);
+                  }
                 }
                 if (secondnum.toString().split("").includes(".")) {
                   secondnum = parseFloat(secondnum);
@@ -66,10 +54,8 @@ client.on("message", async (message) => {
                 if (ans == null) {
                   ans = add(arr);
                 } else if (ans !== null) {
-                  console.log(ans, secondnum);
                   ans = ans + secondnum;
                 }
-                console.log(ans);
               }
               //************************SUBSTRACT************************* */
               else if (sign === "-") {
@@ -81,12 +67,10 @@ client.on("message", async (message) => {
               }
               //************************MULTIPLY************************* */
               else if (sign === "x" || sign === "*") {
-                console.log(ans);
                 if (ans == null) {
                   ans = multiply(arr);
                 } else if (ans !== null) {
                   ans = ans * secondnum;
-                  console.log(ans);
                 }
               }
             }
